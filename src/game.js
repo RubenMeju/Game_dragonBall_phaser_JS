@@ -1,12 +1,13 @@
 import Phaser from "phaser";
 import { GameScene } from "./scenes/GameScene.js";
+import { PreloadScene } from "./scenes/PreloadScene.js";
 
 const config = {
   type: Phaser.AUTO,
   width: 1024,
   height: 700,
   backgroundColor: "#69E2FF",
-  scene: [GameScene],
+  scene: [PreloadScene, GameScene],
   physics: {
     default: "arcade",
     arcade: { debug: true, gravity: { y: 300 } },
