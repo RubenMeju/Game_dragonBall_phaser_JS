@@ -76,7 +76,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         if (isFalling) {
           this.anims.play("jumpDown", true);
         } else if (isOnGround) {
-          this.anims.play("idle", true);
+          this.anims.play("caer", true);
         }
       }
     }

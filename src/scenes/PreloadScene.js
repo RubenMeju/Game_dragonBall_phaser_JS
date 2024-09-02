@@ -18,6 +18,7 @@ export class PreloadScene extends Phaser.Scene {
     });
     this.load.image("tileSets-nubeKinto", "assets/kinto.png");
 
+    // ANIMACIONES PLAYER
     // Animación idle
     this.load.image("idle1", "./assets/idle/image_1.png");
     this.load.image("idle2", "./assets/idle/image_2.png");
@@ -47,6 +48,15 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("jumpDown1", "./assets/jumpDown/image_caer.png");
     this.load.image("jumpDown2", "./assets/jumpDown/image_caer1.png");
 
+    // Animación caer
+    this.load.image("caer1", "./assets/animsPlayer/caer/image_6.png");
+    this.load.image("caer2", "./assets/animsPlayer/caer/image_7.png");
+    this.load.image("caer3", "./assets/animsPlayer/caer/image_8.png");
+    this.load.image("caer4", "./assets/animsPlayer/caer/image_9.png");
+    this.load.image("caer5", "./assets/animsPlayer/caer/image_10.png");
+    this.load.image("caer6", "./assets/animsPlayer/caer/image_11.png");
+
+    // ATAQUES PLAYER
     // Animación onda lateral
     this.load.image("ondaLateral1", "./assets/ondaLateral/image_1.png");
     this.load.image("ondaLateral2", "./assets/ondaLateral/image_2.png");

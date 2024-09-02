@@ -50,6 +50,20 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  // Crear la animación "caer"
+  scene.anims.create({
+    key: "caer",
+    frames: [
+      { key: "caer1" },
+      { key: "caer2" },
+      { key: "caer3" },
+      { key: "caer4" },
+    ],
+    frameRate: 6,
+    repeat: -1,
+  });
+
+  // ATAQUES PLAYER
   // Crear la animación "ondaLateral"
   scene.anims.create({
     key: "ondaLateral",
