@@ -21,6 +21,16 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     // Configurar la gravedad del jugador
     this.setGravityY(300);
 
+    // Configura límites del mundo
+    this.setCollideWorldBounds(true);
+
+    // Asegúrate de que el tamaño del mundo es correcto
+    this.scene.physics.world.setBounds(
+      0,
+      0,
+      this.scene.mapController.map.widthInPixels,
+      this.scene.mapController.map.heightInPixels
+    );
     // Colisiones
     this.setupCollisions();
 
@@ -30,7 +40,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   update(cursors, spaceBar) {
     let velocityX = 0;
-    let velocityY = 0;
+    let velocityY = this.body.velocity.y; // Mantener la velocidad vertical actual para no interferir con la gravedad
 
     // Movimiento horizontal
     if (cursors.left.isDown) {
@@ -45,15 +55,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("idle", true);
     }
 
-    // movimiento si esta en la nube
+    // Si el jugador está en la nube, controlar el movimiento vertical
     if (this.scene.nubeKinto.isPlayerOnTop) {
       if (cursors.up.isDown) {
         velocityY = -this.velocidad;
       } else if (cursors.down.isDown) {
         velocityY = this.velocidad;
+      } else {
+        velocityY = 0; // Detener el movimiento vertical si no se presiona ninguna tecla
       }
-      this.setVelocityY(velocityY);
+      this.setVelocity(velocityX, velocityY); // Mover jugador con la nube
     } else {
+      // Movimiento normal cuando no está en la nube
+      this.setVelocityX(velocityX);
     }
 
     // Salto
@@ -61,9 +75,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityY(-400);
       this.anims.play("jump", true);
     }
-
-    // Aplica la velocidad horizontal
-    this.setVelocityX(velocityX);
   }
 
   setupCollisions() {

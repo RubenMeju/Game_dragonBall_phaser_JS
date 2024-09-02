@@ -22,6 +22,16 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     this.body.setSize(48, this.height);
     this.body.setOffset(0, 0);
 
+    // Configura límites del mundo
+    this.setCollideWorldBounds(true);
+
+    // Asegúrate de que el tamaño del mundo es correcto
+    this.scene.physics.world.setBounds(
+      0,
+      0,
+      this.scene.mapController.map.widthInPixels,
+      this.scene.mapController.map.heightInPixels
+    );
     // Colisiones
     this.setupCollisions();
   }
@@ -30,7 +40,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     let velocityX = 0;
     let velocityY = 0;
 
-    // Movimiento horizontal solo si el jugador está sobre la nube
+    // Movimiento si el jugador está sobre la nube
     if (this.isPlayerOnTop) {
       if (cursors.left.isDown) {
         velocityX = -this.velocidad;
@@ -42,21 +52,22 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
         this.flipX = false;
         this.anims.play("NubeWalk", true);
         this.scene.player.anims.play("playerWalkNube", true);
-      } else if (cursors.up.isDown) {
+      }
+
+      if (cursors.up.isDown) {
         velocityY = -this.velocidad;
       } else if (cursors.down.isDown) {
         velocityY = this.velocidad;
-      } else {
-        this.anims.play("nubeIdle", true);
       }
+
+      // Mover la nube y el jugador juntos
+      this.setVelocity(velocityX, velocityY);
+      this.scene.player.setVelocity(velocityX, velocityY);
     } else {
       // Si el jugador no está encima, la nube no se mueve
       this.anims.play("nubeIdle", true);
+      this.setVelocity(0, 0);
     }
-
-    // Aplica la velocidad horizontal
-    this.setVelocityX(velocityX);
-    this.setVelocityY(velocityY);
   }
 
   setupCollisions() {
