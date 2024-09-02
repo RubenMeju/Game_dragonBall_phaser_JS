@@ -4,25 +4,26 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
     this.scene = scene;
-    // Configuración de propiedades del jugador
     this.velocidad = 200;
     this.alive = true;
     this.lastDirection = "up";
 
+    // Agregar al escenario y a la física
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
+    // Configuración del sprite
     this.setScale(scene.escalado);
-    this.setOrigin(0, 1);
+    this.setOrigin(0.5, 1);
     this.body.setSize(28, 36);
     this.body.setOffset(2, 0);
 
-    //   this.setCollideWorldBounds(true);
-
     // Configurar la gravedad del jugador
     this.setGravityY(300);
+
     // Colisiones
     this.setupCollisions();
+
     // Reproducir animación idle al inicio
     this.anims.play("idle");
   }

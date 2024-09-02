@@ -6,7 +6,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     this.scene = scene;
     // Configuración de propiedades del jugador
     this.velocidad = 200;
-    this.alive = true;
+    this.isPlayerOnTop = false;
     this.lastDirection = "up";
 
     scene.add.existing(this);
@@ -14,9 +14,14 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
 
     this.setScale(scene.escalado);
     this.setOrigin(0, 1);
+    // Configurar las propiedades físicas de la nube
+    this.setImmovable(true); // Hace que la nube no sea empujada por el jugador
+    this.body.allowGravity = false; // Desactivar la gravedad de la nube
 
-    // Configurar la gravedad del jugador
-    this.setGravityY(0);
+    // Ajusta el tamaño y el offset del cuerpo físico para que coincidan con el sprite
+    this.body.setSize(48, this.height);
+    this.body.setOffset(0, 0);
+
     // Colisiones
     this.setupCollisions();
   }
@@ -24,23 +29,24 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
   update(cursors, spaceBar) {
     let velocityX = 0;
 
-    // Movimiento horizontal
-    if (cursors.left.isDown) {
-      velocityX = -this.velocidad;
-      this.flipX = true;
-      this.anims.play("idleWalk", true);
-    } else if (cursors.right.isDown) {
-      velocityX = this.velocidad;
-      this.flipX = false;
-      this.anims.play("idleWalk", true);
+    // Movimiento horizontal solo si el jugador está sobre la nube
+    if (this.isPlayerOnTop) {
+      if (cursors.left.isDown) {
+        velocityX = -this.velocidad;
+        this.flipX = true;
+        this.anims.play("NubeWalk", true);
+        this.scene.player.anims.play("playerWalkNube", true);
+      } else if (cursors.right.isDown) {
+        velocityX = this.velocidad;
+        this.flipX = false;
+        this.anims.play("NubeWalk", true);
+        this.scene.player.anims.play("playerWalkNube", true);
+      } else {
+        this.anims.play("nubeIdle", true);
+      }
     } else {
-      this.anims.play("idleNube", true);
-    }
-
-    // Salto
-    if (spaceBar.isDown && this.body.blocked.down) {
-      this.setVelocityY(-400);
-      //   this.anims.play("jump", true);
+      // Si el jugador no está encima, la nube no se mueve
+      this.anims.play("nubeIdle", true);
     }
 
     // Aplica la velocidad horizontal

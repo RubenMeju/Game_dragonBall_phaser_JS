@@ -42,9 +42,18 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  // Animaciones el jugador encima de la nube Kinto
+  // Crear la animación "jump"
+  scene.anims.create({
+    key: "playerWalkNube",
+    frames: [{ key: "playerWalkNube1" }, { key: "playerWalkNube2" }],
+    frameRate: 3,
+    repeat: -1,
+  });
+
   // Animaciones de la Nube Kinto
   scene.anims.create({
-    key: "idleNube",
+    key: "nubeIdle",
     frames: scene.anims.generateFrameNumbers("tiles-nube", {
       start: 0,
       end: 2,
@@ -54,7 +63,7 @@ export function createAnimations(scene) {
   });
 
   scene.anims.create({
-    key: "idleWalk",
+    key: "NubeWalk",
     frames: scene.anims.generateFrameNumbers("tiles-nube", {
       start: 0,
       end: 4,

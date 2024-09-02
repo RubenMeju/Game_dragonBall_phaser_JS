@@ -42,6 +42,10 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("walk6", "./assets/walk/image_6.png");
     this.load.image("walk7", "./assets/walk/image_7.png");
     this.load.image("walk8", "./assets/walk/image_8.png");
+
+    // Animación playerWalkNube
+    this.load.image("playerWalkNube1", "./assets/playerWalkNube/image_1.png");
+    this.load.image("playerWalkNube2", "./assets/playerWalkNube/image_2.png");
   }
 
   create() {
@@ -60,7 +64,7 @@ export class PreloadScene extends Phaser.Scene {
 
     // Esperar 3 segundos y luego pasar a la escena GameScene
     this.time.delayedCall(
-      3000,
+      500,
       () => {
         this.scene.start("GameScene");
       },
