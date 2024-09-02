@@ -53,8 +53,6 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
         this.anims.play("NubeWalk", true);
         this.scene.player.anims.play("playerWalkNube", true);
       }
-      console.log("player", this.scene.player.y);
-      console.log(this.scene.physics.world.bounds.height);
       if (
         cursors.up.isDown &&
         this.y >= this.scene.physics.world.bounds.y + 200 // limita la subida de la nube
