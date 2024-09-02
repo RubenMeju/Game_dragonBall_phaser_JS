@@ -61,6 +61,13 @@ export class PreloadScene extends Phaser.Scene {
     // Animación playerWalkNube
     this.load.image("playerWalkNube1", "./assets/playerWalkNube/image_1.png");
     this.load.image("playerWalkNube2", "./assets/playerWalkNube/image_2.png");
+
+    //Animaciones Enemigos
+    // Animación idle
+    this.load.image("enemyIdle1", "./assets/animsEnemy/idle/image_1.png");
+    this.load.image("enemyIdle2", "./assets/animsEnemy/idle/image_2.png");
+    this.load.image("enemyIdle3", "./assets/animsEnemy/idle/image_3.png");
+    this.load.image("enemyIdle4", "./assets/animsEnemy/idle/image_4.png");
   }
 
   create() {

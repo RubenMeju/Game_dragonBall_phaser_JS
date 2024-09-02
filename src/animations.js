@@ -105,4 +105,18 @@ export function createAnimations(scene) {
     frameRate: 5,
     repeat: -1,
   });
+
+  // ENEMIGOS
+  // Crear la animación "idle"
+  scene.anims.create({
+    key: "enemyIdle",
+    frames: [
+      { key: "enemyIdle1" },
+      { key: "enemyIdle2" },
+      { key: "enemyIdle3" },
+      { key: "enemyIdle4" },
+    ],
+    frameRate: 4,
+    repeat: -1,
+  });
 }

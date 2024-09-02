@@ -1,6 +1,7 @@
 import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
 import { BolaDeFuego } from "../objects/BolaDeFuego.js";
+import { Cell } from "../objects/Cell.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";
 
@@ -22,6 +23,8 @@ export class GameScene extends Phaser.Scene {
 
     // Creal la nube
     this.nubeKinto = new NubeKinto(this, 350, 850, "NubeWalk");
+
+    this.cell = new Cell(this, 300, 400, "enemyIdle");
 
     // Cámara
     const mapWidth = this.mapController.map.widthInPixels;
@@ -47,6 +50,8 @@ export class GameScene extends Phaser.Scene {
       this.player.update(this.cursors, this.spaceBar, this.keyN, this.keyB);
     }
     this.nubeKinto.update(this.cursors, this.spaceBar);
+
+    this.cell.update();
   }
 
   setupControls() {
