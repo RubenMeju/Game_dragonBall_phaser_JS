@@ -119,4 +119,17 @@ export function createAnimations(scene) {
     frameRate: 4,
     repeat: -1,
   });
+
+  // Crear la animación "walk"
+  scene.anims.create({
+    key: "enemyWalk",
+    frames: [
+      { key: "enemyWalk1" },
+      { key: "enemyWalk2" },
+      { key: "enemyWalk3" },
+      { key: "enemyWalk4" },
+    ],
+    frameRate: 4,
+    repeat: -1,
+  });
 }

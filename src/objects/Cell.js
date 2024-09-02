@@ -19,7 +19,7 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
 
     // Configurar la gravedad del jugador
     this.setGravityY(300);
-
+    this.setImmovable(true);
     // Configura límites del mundo
     this.setCollideWorldBounds(true);
 
@@ -40,8 +40,6 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
 
   update() {
     if (this.scene.player.x < this.x) {
-      console.log("player: ", this.scene.player.x);
-      console.log("cell: ", this.x);
       this.flipX = true;
     } else {
       this.flipX = false;
@@ -54,8 +52,21 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
     if (blocks?.solidos) {
       // colision cell con bloques
       this.scene.physics.add.collider(this, blocks.solidos);
+
+      // colision cell con el jugador
+      this.scene.physics.add.collider(
+        this,
+        this.scene.player,
+        this.handleColisionCellWithPlayer,
+        null,
+        this
+      );
     } else {
       console.error("No se encontraron bloques sólidos en setupCollisions.");
     }
+  }
+
+  handleColisionCellWithPlayer() {
+    console.log("el cell esta colisionando con el jugador");
   }
 }
