@@ -47,24 +47,27 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     const isOnGround = this.body.blocked.down;
     const isFalling = !isOnGround && velocityY > 0;
 
-    // Movimiento horizontal
-    if (cursors.left.isDown) {
-      velocityX = -this.velocidad;
-      this.flipX = true;
-      if (isOnGround) {
-        this.anims.play("walk", true);
-      }
-    } else if (cursors.right.isDown) {
-      velocityX = this.velocidad;
-      this.flipX = false;
-      if (isOnGround) {
-        this.anims.play("walk", true);
-      }
-    } else {
-      if (isFalling) {
-        this.anims.play("jumpDown", true);
-      } else if (isOnGround) {
-        this.anims.play("idle", true);
+    // Si el jugador NO está en la nube, permitir movimiento horizontal
+    if (!this.scene.nubeKinto.isPlayerOnTop) {
+      // Movimiento horizontal
+      if (cursors.left.isDown) {
+        velocityX = -this.velocidad;
+        this.flipX = true;
+        if (isOnGround) {
+          this.anims.play("walk", true);
+        }
+      } else if (cursors.right.isDown) {
+        velocityX = this.velocidad;
+        this.flipX = false;
+        if (isOnGround) {
+          this.anims.play("walk", true);
+        }
+      } else {
+        if (isFalling) {
+          this.anims.play("jumpDown", true);
+        } else if (isOnGround) {
+          this.anims.play("idle", true);
+        }
       }
     }
 
@@ -76,6 +79,25 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Movimiento vertical cuando el jugador está sobre la nube
     if (this.scene.nubeKinto.isPlayerOnTop) {
+      // Deshabilitar movimiento horizontal propio del jugador
+      velocityX = 0;
+      // Salto
+      if (spaceBar.isDown) {
+        console.log("saltando en la nube");
+
+        // Desactivar la gravedad del jugador para que no caiga
+        this.body.allowGravity = true;
+        // Indicar que el jugador está sobre la nube
+        this.scene.nubeKinto.isPlayerOnTop = false;
+      }
+      // Alinear la posición del jugador sobre la nube
+      this.x = this.scene.nubeKinto.x + 75;
+      this.y = this.scene.nubeKinto.y - this.scene.nubeKinto.height - 20;
+
+      // Mantener flipX para la dirección
+      this.flipX = this.scene.nubeKinto.flipX;
+
+      // Permitir movimiento vertical
       if (cursors.up.isDown) {
         velocityY = -this.velocidad;
       } else if (cursors.down.isDown) {

@@ -68,23 +68,10 @@ export class GameScene extends Phaser.Scene {
     if (player.body.touching.down && nubeKinto.body.touching.up) {
       console.log("El jugador está encima de la nube");
 
-      // Ajustar la posición del jugador para que esté exactamente encima de la nube
-      player.setVelocityX(0);
-      player.setVelocityY(0);
-      player.x = nubeKinto.x + 75;
-      player.y = nubeKinto.y - nubeKinto.height - 20; // Ajustar la posición del jugador ligeramente por encima de la nube
-
       // Desactivar la gravedad del jugador para que no caiga
       player.body.allowGravity = false;
       // Indicar que el jugador está sobre la nube
       nubeKinto.isPlayerOnTop = true;
-    }
-
-    if (nubeKinto.isPlayerOnTop && this.spaceBar.isDown) {
-      console.log("no esta encima de la nube");
-      // Si el jugador no está en contacto con la nube, restaurar la gravedad
-      player.body.allowGravity = true;
-      nubeKinto.isPlayerOnTop = false;
     }
   }
 }
