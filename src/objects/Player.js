@@ -31,6 +31,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.scene.mapController.map.widthInPixels,
       this.scene.mapController.map.heightInPixels
     );
+
     // Colisiones
     this.setupCollisions();
 
@@ -40,43 +41,57 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   update(cursors, spaceBar, keyN) {
     let velocityX = 0;
-    let velocityY = this.body.velocity.y; // Mantener la velocidad vertical actual para no interferir con la gravedad
+    let velocityY = this.body.velocity.y;
+
+    // Determinar si el jugador está en el suelo
+    const isOnGround = this.body.blocked.down;
+    const isFalling = !isOnGround && velocityY > 0;
 
     // Movimiento horizontal
     if (cursors.left.isDown) {
       velocityX = -this.velocidad;
       this.flipX = true;
-      this.anims.play("walk", true);
+      if (isOnGround) {
+        this.anims.play("walk", true);
+      }
     } else if (cursors.right.isDown) {
       velocityX = this.velocidad;
       this.flipX = false;
-      this.anims.play("walk", true);
+      if (isOnGround) {
+        this.anims.play("walk", true);
+      }
     } else {
-      this.anims.play("idle", true);
+      if (isFalling) {
+        this.anims.play("jumpDown", true);
+      } else if (isOnGround) {
+        this.anims.play("idle", true);
+      }
     }
 
-    // Si el jugador está en la nube, controlar el movimiento vertical
+    // Salto
+    if (spaceBar.isDown && isOnGround) {
+      this.setVelocityY(-400);
+      this.anims.play("jump", true);
+    }
+
+    // Movimiento vertical cuando el jugador está sobre la nube
     if (this.scene.nubeKinto.isPlayerOnTop) {
       if (cursors.up.isDown) {
         velocityY = -this.velocidad;
       } else if (cursors.down.isDown) {
         velocityY = this.velocidad;
       } else {
-        velocityY = 0; // Detener el movimiento vertical si no se presiona ninguna tecla
+        velocityY = 0;
       }
       this.setVelocity(velocityX, velocityY); // Mover jugador con la nube
     } else {
-      // Movimiento normal cuando no está en la nube
       this.setVelocityX(velocityX);
+      if (!isOnGround && !isFalling) {
+        this.setVelocityY(velocityY); // Mantener la velocidad vertical cuando no está en el aire
+      }
     }
 
-    // Salto
-    if (spaceBar.isDown && this.body.blocked.down) {
-      this.setVelocityY(-400);
-      this.anims.play("jump", true);
-    }
-
-    // llamar a la nube
+    // Llamar a la nube
     if (keyN.isDown && !this.scene.nubeKinto.isPlayerOnTop) {
       this.scene.nubeKinto.llamarNubeKinto();
     }

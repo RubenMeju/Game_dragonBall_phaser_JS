@@ -26,13 +26,6 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("idle5", "./assets/idle/image_5.png");
     this.load.image("idle6", "./assets/idle/image_6.png");
 
-    // Animación jump
-    this.load.image("jump1", "./assets/jump/image_1.png");
-    this.load.image("jump2", "./assets/jump/image_2.png");
-    this.load.image("jump3", "./assets/jump/image_3.png");
-    this.load.image("jump4", "./assets/jump/image_4.png");
-    this.load.image("jump5", "./assets/jump/image_5.png");
-
     // Animación walk
     this.load.image("walk1", "./assets/walk/image_1.png");
     this.load.image("walk2", "./assets/walk/image_2.png");
@@ -42,6 +35,17 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("walk6", "./assets/walk/image_6.png");
     this.load.image("walk7", "./assets/walk/image_7.png");
     this.load.image("walk8", "./assets/walk/image_8.png");
+
+    // Animación jump
+    this.load.image("jump1", "./assets/jump/image_1.png");
+    this.load.image("jump2", "./assets/jump/image_2.png");
+    this.load.image("jump3", "./assets/jump/image_3.png");
+    this.load.image("jump4", "./assets/jump/image_4.png");
+    this.load.image("jump5", "./assets/jump/image_5.png");
+
+    // Animación jumpDown
+    this.load.image("jumpDown1", "./assets/jumpDown/image_caer.png");
+    this.load.image("jumpDown2", "./assets/jumpDown/image_caer1.png");
 
     // Animación playerWalkNube
     this.load.image("playerWalkNube1", "./assets/playerWalkNube/image_1.png");

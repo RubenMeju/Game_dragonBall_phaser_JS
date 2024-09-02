@@ -42,6 +42,14 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  // Crear la animación "jumpDown"
+  scene.anims.create({
+    key: "jumpDown",
+    frames: [{ key: "jumpDown1" }, { key: "jumpDown2" }],
+    frameRate: 1,
+    repeat: -1,
+  });
+
   // Animaciones el jugador encima de la nube Kinto
   // Crear la animación "jump"
   scene.anims.create({
