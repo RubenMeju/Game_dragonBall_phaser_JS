@@ -50,8 +50,21 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  // Crear la animación "ondaLateral"
+  scene.anims.create({
+    key: "ondaLateral",
+    frames: [
+      { key: "ondaLateral1" },
+      { key: "ondaLateral2" },
+      { key: "ondaLateral3" },
+      { key: "ondaLateral4" },
+    ],
+    frameRate: 4,
+    repeat: -1,
+  });
+
+  // NUBE
   // Animaciones el jugador encima de la nube Kinto
-  // Crear la animación "jump"
   scene.anims.create({
     key: "playerWalkNube",
     frames: [{ key: "playerWalkNube1" }, { key: "playerWalkNube2" }],
