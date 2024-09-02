@@ -36,12 +36,12 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     this.setupCollisions();
   }
 
-  update(cursors, spaceBar) {
+  update(cursors) {
     let velocityX = 0;
     let velocityY = 0;
 
-    // Movimiento si el jugador está sobre la nube
     if (this.isPlayerOnTop) {
+      // Movimiento si el jugador está sobre la nube
       if (cursors.left.isDown) {
         velocityX = -this.velocidad;
         this.flipX = true;
@@ -79,5 +79,12 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     } else {
       console.error("No se encontraron bloques sólidos en setupCollisions.");
     }
+  }
+
+  // llamar a la nube
+  llamarNubeKinto() {
+    console.log("la nube va de camino", this);
+    this.y = this.scene.player.y - 20;
+    this.x = this.scene.player.x + 50;
   }
 }

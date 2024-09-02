@@ -43,16 +43,22 @@ export class GameScene extends Phaser.Scene {
 
   update(time, delta) {
     if (this.player.alive) {
-      this.player.update(this.cursors, this.spaceBar);
+      this.player.update(this.cursors, this.spaceBar, this.keyN);
     }
     this.nubeKinto.update(this.cursors, this.spaceBar);
   }
 
   setupControls() {
+    // Configurar teclas de cursor
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    // Configurar la tecla SPACE
     this.spaceBar = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
+
+    // Configurar la tecla N
+    this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
   // Si el jugador está encima de la nube

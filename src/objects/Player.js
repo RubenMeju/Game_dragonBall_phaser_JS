@@ -38,7 +38,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.anims.play("idle");
   }
 
-  update(cursors, spaceBar) {
+  update(cursors, spaceBar, keyN) {
     let velocityX = 0;
     let velocityY = this.body.velocity.y; // Mantener la velocidad vertical actual para no interferir con la gravedad
 
@@ -74,6 +74,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     if (spaceBar.isDown && this.body.blocked.down) {
       this.setVelocityY(-400);
       this.anims.play("jump", true);
+    }
+
+    // llamar a la nube
+    if (keyN.isDown && !this.scene.nubeKinto.isPlayerOnTop) {
+      this.scene.nubeKinto.llamarNubeKinto();
     }
   }
 
