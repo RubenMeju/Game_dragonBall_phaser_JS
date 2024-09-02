@@ -53,6 +53,11 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("ondaLateral3", "./assets/ondaLateral/image_3.png");
     this.load.image("ondaLateral4", "./assets/ondaLateral/image_4.png");
 
+    // Animación bola de fuego
+    this.load.image("bolaDeFuego1", "./assets/bolaDeFuego/image_1.png");
+    this.load.image("bolaDeFuego2", "./assets/bolaDeFuego/image_2.png");
+    this.load.image("bolaDeFuego3", "./assets/bolaDeFuego/image_3.png");
+
     // Animación playerWalkNube
     this.load.image("playerWalkNube1", "./assets/playerWalkNube/image_1.png");
     this.load.image("playerWalkNube2", "./assets/playerWalkNube/image_2.png");

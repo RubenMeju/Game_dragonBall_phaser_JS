@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { BolaDeFuego } from "./BolaDeFuego";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
@@ -7,6 +8,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.velocidad = 200;
     this.alive = true;
     this.lastDirection = "up";
+    this.animAttack = false;
 
     // Agregar al escenario y a la física
     scene.add.existing(this);
@@ -37,16 +39,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Reproducir animación idle al inicio
     this.anims.play("idle");
+
+    // Grupo de bolas de fuego
+    this.bolasDeFuego = this.scene.physics.add.group({
+      classType: BolaDeFuego,
+      runChildUpdate: true,
+    });
   }
 
-  update(cursors, spaceBar, keyN) {
+  update(cursors, spaceBar, keyN, keyB) {
     let velocityX = 0;
     let velocityY = this.body.velocity.y;
 
     // Determinar si el jugador está en el suelo
     const isOnGround = this.body.blocked.down;
     const isFalling = !isOnGround && velocityY > 0;
-
+    if (this.animAttack) {
+      return;
+    }
     // Si el jugador NO está en la nube, permitir movimiento horizontal
     if (!this.scene.nubeKinto.isPlayerOnTop) {
       // Movimiento horizontal
@@ -75,6 +85,16 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     if (spaceBar.isDown && isOnGround) {
       this.setVelocityY(-400);
       this.anims.play("jump", true);
+    }
+
+    // Lanzar bola de fuego lateral
+    if (keyB.isDown) {
+      if (!this.bolaDeFuegoActivo) {
+        this.lanzarBolaDeFuego();
+        this.bolaDeFuegoActivo = true; // Evitar lanzar múltiples bolas rápidamente
+      }
+    } else {
+      this.bolaDeFuegoActivo = false;
     }
 
     // Movimiento vertical cuando el jugador está sobre la nube
@@ -117,6 +137,33 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     if (keyN.isDown && !this.scene.nubeKinto.isPlayerOnTop) {
       this.scene.nubeKinto.llamarNubeKinto();
     }
+  }
+
+  lanzarBolaDeFuego() {
+    this.animAttack = true;
+    this.anims.play("ondaLateral", true);
+
+    // Escucha el evento "animationcomplete"
+    this.once("animationcomplete", (animation, frame) => {
+      // Verifica si la animación que terminó es "ondaLateral"
+      if (animation.key === "ondaLateral") {
+        //console.log("La animación ha terminado");
+        // Crear una nueva bola de fuego en la posición del jugador
+        const bolaDeFuego = this.bolasDeFuego.get(
+          this.x,
+          this.y - 50,
+          "bolaDeFuego"
+        );
+        if (bolaDeFuego) {
+          bolaDeFuego.setActive(true).setVisible(true);
+          bolaDeFuego.body.setVelocityX(400); // Ajustar la velocidad según sea necesario
+          bolaDeFuego.body.setCollideWorldBounds(true);
+          bolaDeFuego.body.allowGravity = false; // Desactivar la gravedad aquí
+
+          this.animAttack = false;
+        }
+      }
+    });
   }
 
   setupCollisions() {

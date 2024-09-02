@@ -54,12 +54,25 @@ export function createAnimations(scene) {
   scene.anims.create({
     key: "ondaLateral",
     frames: [
+      { key: "ondaLateral4" },
       { key: "ondaLateral1" },
       { key: "ondaLateral2" },
       { key: "ondaLateral3" },
       { key: "ondaLateral4" },
     ],
-    frameRate: 4,
+    frameRate: 6,
+    repeat: 0,
+  });
+
+  // Crear la animación "bolaDeFuego"
+  scene.anims.create({
+    key: "bolaDeFuego",
+    frames: [
+      { key: "bolaDeFuego1" },
+      { key: "bolaDeFuego2" },
+      { key: "bolaDeFuego3" },
+    ],
+    frameRate: 6,
     repeat: -1,
   });
 

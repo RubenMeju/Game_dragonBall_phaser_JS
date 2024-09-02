@@ -1,5 +1,6 @@
 import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
+import { BolaDeFuego } from "../objects/BolaDeFuego.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";
 
@@ -43,7 +44,7 @@ export class GameScene extends Phaser.Scene {
 
   update(time, delta) {
     if (this.player.alive) {
-      this.player.update(this.cursors, this.spaceBar, this.keyN);
+      this.player.update(this.cursors, this.spaceBar, this.keyN, this.keyB);
     }
     this.nubeKinto.update(this.cursors, this.spaceBar);
   }
@@ -57,17 +58,17 @@ export class GameScene extends Phaser.Scene {
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
 
-    // Configurar la tecla N
+    // Configurar la tecla N (llamar a la nube)
     this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
+
+    // Configurar la tecla B (lanzar onda Lateral)
+    this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
   }
 
   // Si el jugador está encima de la nube
   onPlayerOnNube(player, nubeKinto) {
-    console.log("onplayerOnNube");
     // Verificar si el jugador está tocando la parte superior de la nube
     if (player.body.touching.down && nubeKinto.body.touching.up) {
-      console.log("El jugador está encima de la nube");
-
       // Desactivar la gravedad del jugador para que no caiga
       player.body.allowGravity = false;
       // Indicar que el jugador está sobre la nube
