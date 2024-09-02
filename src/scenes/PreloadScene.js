@@ -69,11 +69,14 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("enemyIdle3", "./assets/animsEnemy/idle/image_3.png");
     this.load.image("enemyIdle4", "./assets/animsEnemy/idle/image_4.png");
 
-    // Animación idle
+    // Animación walk
     this.load.image("enemyWalk1", "./assets/animsEnemy/walk/image_1.png");
     this.load.image("enemyWalk2", "./assets/animsEnemy/walk/image_2.png");
     this.load.image("enemyWalk3", "./assets/animsEnemy/walk/image_3.png");
     this.load.image("enemyWalk4", "./assets/animsEnemy/walk/image_4.png");
+
+    // Animación fly
+    this.load.image("enemyFly2", "./assets/animsEnemy/fly/image_2.png");
   }
 
   create() {

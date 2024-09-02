@@ -58,7 +58,7 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
         this.setVelocityY(directionY * this.velocidad);
 
         // Establece la animación de caminar
-        this.anims.play("enemyWalk", true);
+        this.anims.play("enemyFly", true);
 
         // Voltea el sprite según la dirección de movimiento
         this.flipX = directionX < 0;

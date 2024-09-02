@@ -132,4 +132,12 @@ export function createAnimations(scene) {
     frameRate: 4,
     repeat: -1,
   });
+
+  // Crear la animación "fly"
+  scene.anims.create({
+    key: "enemyFly",
+    frames: [{ key: "enemyFly2" }],
+    frameRate: 4,
+    repeat: -1,
+  });
 }
