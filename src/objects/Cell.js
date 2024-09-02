@@ -39,12 +39,38 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    if (this.scene.player.x < this.x) {
-      this.flipX = true;
-    } else {
-      this.flipX = false;
+    if (this.alive) {
+      // Determina la dirección del movimiento hacia el jugador
+      const player = this.scene.player;
+      const distanceX = player.x - this.x;
+      const distanceY = player.y - this.y;
+      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+      // Solo mueve el cell si está cerca del jugador
+      if (distance < 500) {
+        // Ajusta este valor según la distancia en la que el cell debe comenzar a moverse
+        // Normaliza la dirección del movimiento
+        const directionX = distanceX / distance;
+        const directionY = distanceY / distance;
+
+        // Establece la velocidad y dirección
+        this.setVelocityX(directionX * this.velocidad);
+        this.setVelocityY(directionY * this.velocidad);
+
+        // Establece la animación de caminar
+        this.anims.play("enemyWalk", true);
+
+        // Voltea el sprite según la dirección de movimiento
+        this.flipX = directionX < 0;
+      } else {
+        // Si no se está moviendo, establece la animación idle
+        this.setVelocityX(0);
+        this.setVelocityY(0);
+        this.anims.play("enemyIdle", true);
+      }
     }
   }
+
   setupCollisions() {
     const blocks = this.scene.mapController.getBlocks();
 

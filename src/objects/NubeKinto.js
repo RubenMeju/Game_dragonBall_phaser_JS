@@ -5,7 +5,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture);
     this.scene = scene;
     // Configuración de propiedades del jugador
-    this.velocidad = 200;
+    this.velocidad = 350;
     this.isPlayerOnTop = false;
     this.lastDirection = "up";
 

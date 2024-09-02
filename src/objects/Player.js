@@ -83,7 +83,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Salto
     if (spaceBar.isDown && isOnGround) {
-      this.setVelocityY(-400);
+      this.setVelocityY(-500);
       this.anims.play("jump", true);
     }
 

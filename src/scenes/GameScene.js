@@ -24,7 +24,7 @@ export class GameScene extends Phaser.Scene {
     // Creal la nube
     this.nubeKinto = new NubeKinto(this, 350, 850, "NubeWalk");
 
-    this.cell = new Cell(this, 300, 400, "enemyIdle");
+    this.cell = new Cell(this, 700, 400, "enemyIdle");
 
     // Cámara
     const mapWidth = this.mapController.map.widthInPixels;
