@@ -34,9 +34,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.scene.mapController.map.heightInPixels
     );
 
-    // Colisiones
-    this.setupCollisions();
-
     // Reproducir animación idle al inicio
     this.anims.play("idle");
 
@@ -45,6 +42,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       classType: BolaDeFuego,
       runChildUpdate: true,
     });
+
+    // Colisiones
+    this.setupCollisions();
   }
 
   update(cursors, spaceBar, keyN, keyB) {
@@ -138,30 +138,43 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.scene.nubeKinto.llamarNubeKinto();
     }
   }
+  cambiarAnimacion(animacion) {
+    if (this.anims.currentAnim && this.anims.currentAnim.key === animacion) {
+      return; // No cambia la animación si ya está reproduciéndose la misma
+    }
+    this.anims.play(animacion, true);
+  }
 
   lanzarBolaDeFuego() {
+    if (this.animAttack) return; // Asegúrate de que no se pueda lanzar otra bola mientras está en ataque
+
     this.animAttack = true;
-    this.anims.play("ondaLateral", true);
+    this.cambiarAnimacion("ondaLateral");
 
-    // Escucha el evento "animationcomplete"
-    this.once("animationcomplete", (animation, frame) => {
-      // Verifica si la animación que terminó es "ondaLateral"
-      if (animation.key === "ondaLateral") {
-        //console.log("La animación ha terminado");
-        // Crear una nueva bola de fuego en la posición del jugador
-        const bolaDeFuego = this.bolasDeFuego.get(
-          this.x,
-          this.y - 50,
-          "bolaDeFuego"
-        );
-        if (bolaDeFuego) {
-          bolaDeFuego.setActive(true).setVisible(true);
-          bolaDeFuego.body.setVelocityX(400); // Ajustar la velocidad según sea necesario
-          bolaDeFuego.body.setCollideWorldBounds(true);
-          bolaDeFuego.body.allowGravity = false; // Desactivar la gravedad aquí
+    // Escuchar el evento "animationcomplete" solo para la animación específica
+    this.once("animationcomplete-ondaLateral", () => {
+      console.log("La animación ondaLateral ha terminado");
 
-          this.animAttack = false;
-        }
+      // Crear una nueva bola de fuego en la posición del jugador
+      const bolaDeFuego = this.bolasDeFuego.get(
+        this.x,
+        this.y - 50,
+        "bolaDeFuego"
+      );
+      if (bolaDeFuego) {
+        bolaDeFuego.setActive(true).setVisible(true);
+        bolaDeFuego.body.setVelocityX(400); // Ajustar la velocidad según sea necesario
+        bolaDeFuego.body.setCollideWorldBounds(true);
+        bolaDeFuego.body.allowGravity = false; // Desactivar la gravedad aquí
+      }
+
+      this.animAttack = false;
+
+      // Volver a la animación adecuada
+      if (this.scene.nubeKinto.isPlayerOnTop) {
+        this.cambiarAnimacion("playerWalkNube");
+      } else if (this.body.blocked.down) {
+        this.cambiarAnimacion("idle"); // O cualquier animación que represente estar en el suelo
       }
     });
   }
@@ -171,9 +184,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Verifica si blocks y blocks.solidos están correctamente definidos
     if (blocks?.solidos) {
+      // colision jugador con bloques
       this.scene.physics.add.collider(this, blocks.solidos);
+
+      //colision bolas de fuego con bloques
+      this.scene.physics.add.collider(
+        this.bolasDeFuego,
+        blocks.solidos,
+        this.bolaDeFuegoImpactaEnUnMuro,
+        null,
+        this
+      );
     } else {
       console.error("No se encontraron bloques sólidos en setupCollisions.");
     }
+  }
+
+  bolaDeFuegoImpactaEnUnMuro(bolaDeFuego, tile) {
+    console.log("impacto de una bola de fuego con un bloque", bolaDeFuego);
+    bolaDeFuego.destroy();
   }
 }
