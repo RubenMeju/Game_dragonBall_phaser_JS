@@ -5,12 +5,18 @@ export class MapController {
     this.scene = scene;
     this.map = null;
     this.blocks = null;
+    this.initial();
+  }
+
+  initial() {
+    this.createMap();
+    this.createBackground();
+    this.createBlocks();
   }
 
   // Método para crear el mapa
   createMap() {
     this.map = this.scene.make.tilemap({ key: "mapa" });
-    this.createBackground();
   }
 
   createBackground() {

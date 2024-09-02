@@ -15,9 +15,6 @@ export class GameScene extends Phaser.Scene {
     createAnimations(this);
 
     this.mapController = new MapController(this);
-    // Cargar y crear el mapa del nivel actual
-    this.mapController.createMap();
-    this.mapController.createBlocks();
 
     // Crear el jugador en una posición inicial
     this.player = new Player(this, 100, 100, "idle1");
