@@ -30,6 +30,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   update(cursors, spaceBar) {
     let velocityX = 0;
+    let velocityY = 0;
 
     // Movimiento horizontal
     if (cursors.left.isDown) {
@@ -42,6 +43,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("walk", true);
     } else {
       this.anims.play("idle", true);
+    }
+
+    // movimiento si esta en la nube
+    if (this.scene.nubeKinto.isPlayerOnTop) {
+      if (cursors.up.isDown) {
+        velocityY = -this.velocidad;
+      } else if (cursors.down.isDown) {
+        velocityY = this.velocidad;
+      }
+      this.setVelocityY(velocityY);
+    } else {
     }
 
     // Salto

@@ -28,6 +28,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
 
   update(cursors, spaceBar) {
     let velocityX = 0;
+    let velocityY = 0;
 
     // Movimiento horizontal solo si el jugador está sobre la nube
     if (this.isPlayerOnTop) {
@@ -41,6 +42,10 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
         this.flipX = false;
         this.anims.play("NubeWalk", true);
         this.scene.player.anims.play("playerWalkNube", true);
+      } else if (cursors.up.isDown) {
+        velocityY = -this.velocidad;
+      } else if (cursors.down.isDown) {
+        velocityY = this.velocidad;
       } else {
         this.anims.play("nubeIdle", true);
       }
@@ -51,6 +56,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
 
     // Aplica la velocidad horizontal
     this.setVelocityX(velocityX);
+    this.setVelocityY(velocityY);
   }
 
   setupCollisions() {
