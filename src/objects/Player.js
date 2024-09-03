@@ -250,6 +250,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   bolaDeFuegoImpactaEnCell(cell, bolaDeFuego) {
     console.log("la bola de fuego impacta en el cell", bolaDeFuego);
     bolaDeFuego.destroy();
+
+    // quitar vida al cell
+    cell.takeDamage(10);
   }
 
   takeDamage(amount) {

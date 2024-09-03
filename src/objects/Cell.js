@@ -29,7 +29,7 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
     this.setupCollisions();
 
     // Configura la barra de vida
-    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 20); // Ajusta la posición y tamaño según tu preferencia
+    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 100); // Ajusta la posición y tamaño según tu preferencia
 
     // Reproducir animación idle al inicio
     this.anims.play("enemyIdle");
