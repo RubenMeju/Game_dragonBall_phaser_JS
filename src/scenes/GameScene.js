@@ -1,5 +1,6 @@
 import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
+import { game } from "../game.js";
 import { Cell } from "../objects/Cell.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";
@@ -42,6 +43,8 @@ export class GameScene extends Phaser.Scene {
       null,
       this
     );
+
+    this.physics.world.setBounds(0, 0, game.config.width, game.config.height); // Establece los límites del mundo
   }
 
   update(time, delta) {

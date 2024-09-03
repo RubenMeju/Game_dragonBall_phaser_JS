@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { BolaDeFuego } from "./BolaDeFuego";
 import { HealthBar } from "./HealthBar";
+import { game } from "../game";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
@@ -72,6 +73,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.handleCloudMovement(cursors, spaceBar);
       this.handleCloudCall(keyN);
     }
+
+    // eliminar la bola de fuego si sale del mapa
+    this.bolasDeFuego.getChildren().forEach((bolaDeFuego) => {
+      if (
+        bolaDeFuego.x < 0 ||
+        bolaDeFuego.x > game.config.width ||
+        bolaDeFuego.y < 0 ||
+        bolaDeFuego.y > game.config.height
+      ) {
+        bolaDeFuego.emit("out-of-bounds", bolaDeFuego); // Emite un evento personalizado
+        bolaDeFuego.destroy(); // Destruye la bala
+      }
+    });
   }
 
   handleMovement(cursors, spaceBar, isOnGround, isFalling) {
@@ -160,7 +174,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         bolaDeFuego.setActive(true).setVisible(true);
         bolaDeFuego.body.setVelocityX(velocidadX);
         bolaDeFuego.setFlipX(mirandoALaIzquierda);
-        bolaDeFuego.body.setCollideWorldBounds(true);
+        //  bolaDeFuego.body.setCollideWorldBounds(true);
         bolaDeFuego.body.allowGravity = false;
       }
 

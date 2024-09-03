@@ -25,14 +25,6 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
     // Configura límites del mundo
     this.setCollideWorldBounds(true);
 
-    // Asegúrate de que el tamaño del mundo es correcto
-    this.scene.physics.world.setBounds(
-      0,
-      0,
-      this.scene.mapController.map.widthInPixels,
-      this.scene.mapController.map.heightInPixels
-    );
-
     // Colisiones
     this.setupCollisions();
 
