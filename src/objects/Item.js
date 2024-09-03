@@ -1,7 +1,7 @@
 export class Item extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y) {
+  constructor(scene, x, y, frame) {
     // Pasa el nombre de la textura al superconstructor
-    super(scene, x, y, "tiles-items");
+    super(scene, x, y, "tiles-items", frame);
 
     // Añade el sprite al mundo de la escena
     scene.add.existing(this);

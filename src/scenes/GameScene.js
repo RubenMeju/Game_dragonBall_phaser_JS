@@ -37,7 +37,7 @@ export class GameScene extends Phaser.Scene {
     this.setupControls();
     this.setupCollisions();
 
-    this.newItem = new Item(this, 300, 700);
+    this.newItem = new Item(this, 300, 700, 0);
   }
 
   update(time, delta) {
