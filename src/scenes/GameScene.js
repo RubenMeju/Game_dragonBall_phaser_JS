@@ -27,7 +27,7 @@ export class GameScene extends Phaser.Scene {
 
     //  this.cell = new Cell(this, 700, 850, "enemyIdle");
 
-    // Cámara
+    // Obtener el tamaño del mundo o del mapa
     const mapWidth = this.mapController.map.widthInPixels;
     const mapHeight = this.mapController.map.heightInPixels;
 
@@ -37,7 +37,20 @@ export class GameScene extends Phaser.Scene {
     this.setupControls();
     this.setupCollisions();
 
-    this.newItem = new Item(this, 300, 700, 4);
+    // Definir número de items
+    const numItems = 7;
+
+    // Crear los items en posiciones aleatorias y asignarles diferentes frames
+    for (let i = 0; i < numItems; i++) {
+      // Generar posiciones aleatorias dentro del mapa
+      const x = Phaser.Math.Between(0, mapWidth);
+      const y = Phaser.Math.Between(0, mapHeight);
+
+      // Seleccionar un frame aleatorio
+      const frame = Phaser.Math.Between(0, 6); // Asegúrate de que este rango coincida con los frames disponibles
+
+      new Item(this, x, y, frame);
+    }
   }
 
   update(time, delta) {
