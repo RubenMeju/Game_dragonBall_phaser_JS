@@ -2,6 +2,7 @@ import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
 import { game } from "../game.js";
 import { Cell } from "../objects/Cell.js";
+import { Item } from "../objects/Item.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";
 
@@ -24,7 +25,7 @@ export class GameScene extends Phaser.Scene {
     // Creal la nube
     this.nubeKinto = new NubeKinto(this, 350, 550, "NubeWalk");
 
-    this.cell = new Cell(this, 700, 850, "enemyIdle");
+    //  this.cell = new Cell(this, 700, 850, "enemyIdle");
 
     // Cámara
     const mapWidth = this.mapController.map.widthInPixels;
@@ -35,6 +36,8 @@ export class GameScene extends Phaser.Scene {
 
     this.setupControls();
     this.setupCollisions();
+
+    this.newItem = new Item(this, 300, 700);
   }
 
   update(time, delta) {
@@ -49,7 +52,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.nubeKinto.update(this.cursors, this.spaceBar);
 
-    this.cell.update();
+    // this.cell.update();
   }
 
   setupControls() {

@@ -18,6 +18,12 @@ export class PreloadScene extends Phaser.Scene {
     });
     this.load.image("tileSets-nubeKinto", "assets/kinto.png");
 
+    //sprites items
+    this.load.spritesheet("tiles-items", "assets/items.png", {
+      frameWidth: 23,
+      frameHeight: 24,
+    });
+
     // ANIMACIONES PLAYER
     // Animación idle
     this.load.image("idle1", "./assets/idle/image_1.png");

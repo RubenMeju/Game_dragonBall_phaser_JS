@@ -252,7 +252,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     bolaDeFuego.destroy();
 
     // quitar vida al cell
-    cell.takeDamage(10);
+    cell.takeDamage(30);
   }
 
   takeDamage(amount) {
