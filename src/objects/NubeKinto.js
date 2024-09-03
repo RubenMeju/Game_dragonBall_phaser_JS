@@ -108,6 +108,7 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
       player.body.allowGravity = false;
       // Indicar que el jugador está sobre la nube
       nubeKinto.isPlayerOnTop = true;
+      player.anims.play("playerWalkNube", true);
     }
   }
 
