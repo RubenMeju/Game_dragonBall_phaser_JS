@@ -24,7 +24,7 @@ export class GameScene extends Phaser.Scene {
     // Creal la nube
     this.nubeKinto = new NubeKinto(this, 350, 550, "NubeWalk");
 
-    this.cell = new Cell(this, 700, 400, "enemyIdle");
+    this.cell = new Cell(this, 700, 850, "enemyIdle");
 
     // Cámara
     const mapWidth = this.mapController.map.widthInPixels;
@@ -45,6 +45,15 @@ export class GameScene extends Phaser.Scene {
     );
 
     this.physics.world.setBounds(0, 0, game.config.width, game.config.height); // Establece los límites del mundo
+
+    // colision entre las bolas de fuego y el cell
+    this.physics.add.collider(
+      this.player.bolasDeFuego,
+      this.cell,
+      this.player.bolaDeFuegoImpactaEnCell,
+      null,
+      this
+    );
   }
 
   update(time, delta) {

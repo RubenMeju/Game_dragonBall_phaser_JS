@@ -10,7 +10,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.velocidad = 200;
     this.alive = true;
     this.animAttack = false;
-
+    this.bolasDeFuego = null;
     // Inicialización de variables de control
     this.setupPlayer(scene);
     this.setupPhysics(scene);
@@ -244,6 +244,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   bolaDeFuegoImpactaEnUnMuro(bolaDeFuego, tile) {
     console.log("Impacto de una bola de fuego con un bloque", bolaDeFuego);
+    bolaDeFuego.destroy();
+  }
+
+  bolaDeFuegoImpactaEnCell(cell, bolaDeFuego) {
+    console.log("la bola de fuego impacta en el cell", bolaDeFuego);
     bolaDeFuego.destroy();
   }
 
