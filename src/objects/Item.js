@@ -9,10 +9,33 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
 
     this.setScale(2);
 
+    this.body.setAllowGravity(false);
+
+    this.body.setImmovable(true);
+
+    this.startY = y; // Posición original en Y
+    this.startX = x; // Posición original en X
+    this.radius = 50; // Radio del círculo que describirá el movimiento
+    this.angle = 0; // Ángulo inicial
+    this.angularSpeed = 0.04; // Velocidad de rotación
+
     this.setCollideWorldBounds(true);
     this.setupCollisions();
   }
 
+  preUpdate(time, delta) {
+    super.preUpdate(time, delta);
+
+    // Actualizar el ángulo
+    this.angle += this.angularSpeed;
+
+    // Calcular la nueva posición basada en el ángulo
+    const newX = this.startX + this.radius * Math.cos(this.angle);
+    const newY = this.startY + this.radius * Math.sin(this.angle);
+
+    // Actualizar la posición del item
+    this.setPosition(newX, newY);
+  }
   setupCollisions() {
     const blocks = this.scene.mapController.getBlocks();
 
@@ -31,8 +54,6 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
   }
 
   getItem(player, item) {
-    console.log("has cogido el item", item);
-
     item.destroy();
   }
 }
