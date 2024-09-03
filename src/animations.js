@@ -187,4 +187,17 @@ export function createAnimations(scene) {
     frameRate: 4,
     repeat: -1,
   });
+
+  // Crear la animación "die"
+  scene.anims.create({
+    key: "enemyDie",
+    frames: [
+      { key: "enemyDie1" },
+      { key: "enemyDie2" },
+      { key: "enemyDie3" },
+      { key: "enemyDie4" },
+    ],
+    frameRate: 4,
+    repeat: 0,
+  });
 }

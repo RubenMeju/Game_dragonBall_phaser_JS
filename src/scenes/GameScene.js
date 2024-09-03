@@ -1,6 +1,5 @@
 import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
-import { BolaDeFuego } from "../objects/BolaDeFuego.js";
 import { Cell } from "../objects/Cell.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";

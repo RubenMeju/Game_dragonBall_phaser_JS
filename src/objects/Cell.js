@@ -1,3 +1,5 @@
+import { HealthBar } from "./HealthBar";
+
 export class Cell extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
@@ -33,6 +35,9 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
 
     // Colisiones
     this.setupCollisions();
+
+    // Configura la barra de vida
+    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 20); // Ajusta la posición y tamaño según tu preferencia
 
     // Reproducir animación idle al inicio
     this.anims.play("enemyIdle");
@@ -126,5 +131,24 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
 
     // quitar vida al jugador
     this.scene.player.takeDamage(10);
+
+    // quitar vida al cell
+    this.scene.cell.takeDamage(10);
+  }
+
+  takeDamage(amount) {
+    if (this.alive) {
+      this.healthBar.setHealth(this.healthBar.currentHealth - amount);
+      if (this.healthBar.currentHealth <= 0) {
+        this.die();
+      }
+    }
+  }
+  die() {
+    this.alive = false;
+    this.setVelocity(0, 0);
+    this.setSize(30, 1);
+    this.setOffset(10, 15);
+    this.anims.play("enemyDie", true);
   }
 }

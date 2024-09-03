@@ -127,6 +127,12 @@ export class PreloadScene extends Phaser.Scene {
 
     // Animación fly
     this.load.image("enemyFly2", "./assets/animsEnemy/fly/image_2.png");
+
+    // Animación die
+    this.load.image("enemyDie1", "./assets/animsEnemy/die/image_1.png");
+    this.load.image("enemyDie2", "./assets/animsEnemy/die/image_2.png");
+    this.load.image("enemyDie3", "./assets/animsEnemy/die/image_3.png");
+    this.load.image("enemyDie4", "./assets/animsEnemy/die/image_4.png");
   }
 
   create() {
