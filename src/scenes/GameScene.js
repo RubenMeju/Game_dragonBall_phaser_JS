@@ -39,7 +39,7 @@ export class GameScene extends Phaser.Scene {
     this.physics.add.collider(
       this.player,
       this.nubeKinto,
-      this.onPlayerOnNube,
+      this.nubeKinto.onPlayerOnNube,
       null,
       this
     );
@@ -68,16 +68,5 @@ export class GameScene extends Phaser.Scene {
 
     // Configurar la tecla B (lanzar onda Lateral)
     this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-  }
-
-  // Si el jugador está encima de la nube
-  onPlayerOnNube(player, nubeKinto) {
-    // Verificar si el jugador está tocando la parte superior de la nube
-    if (player.body.touching.down && nubeKinto.body.touching.up) {
-      // Desactivar la gravedad del jugador para que no caiga
-      player.body.allowGravity = false;
-      // Indicar que el jugador está sobre la nube
-      nubeKinto.isPlayerOnTop = true;
-    }
   }
 }
