@@ -22,7 +22,7 @@ export class GameScene extends Phaser.Scene {
     this.player = new Player(this, 100, 100, "idle1");
 
     // Creal la nube
-    this.nubeKinto = new NubeKinto(this, 350, 850, "NubeWalk");
+    this.nubeKinto = new NubeKinto(this, 350, 550, "NubeWalk");
 
     this.cell = new Cell(this, 700, 400, "enemyIdle");
 

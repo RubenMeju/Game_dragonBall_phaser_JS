@@ -93,6 +93,32 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleColisionCellWithPlayer() {
-    console.log("el cell esta colisionando con el jugador");
+    console.log("El cell está colisionando con el jugador", this.x);
+
+    // Verificar si el jugador está a la derecha o a la izquierda del cell
+    const playerIsToTheRight = this.scene.player.x > this.x;
+
+    // Si el jugador está a la derecha, invertir las direcciones
+    const playerMoveDistance = playerIsToTheRight ? 300 : -300;
+    const cellMoveDistance = playerIsToTheRight ? -300 : 300;
+
+    // Animar el movimiento del jugador
+    this.scene.tweens.add({
+      targets: this.scene.player,
+      x: this.scene.player.x + playerMoveDistance,
+      duration: 500, // Duración de la animación en milisegundos
+      ease: "Power2", // Tipo de interpolación (puedes cambiarlo a otro si lo deseas)
+    });
+
+    // Animar el movimiento del enemigo (cell)
+    this.scene.tweens.add({
+      targets: this,
+      x: this.x + cellMoveDistance,
+      duration: 500, // Duración de la animación en milisegundos
+      ease: "Power3", // Tipo de interpolación
+    });
+
+    // Reproducir la animación de caída del jugador
+    this.scene.player.anims.play("caer", true);
   }
 }
