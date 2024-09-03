@@ -147,8 +147,8 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
   die() {
     this.alive = false;
     this.setVelocity(0, 0);
-    this.setSize(30, 1);
-    this.setOffset(10, 15);
+    // this.setSize(30, 1);
+    //this.setOffset(10, 15);
     this.anims.play("enemyDie", true);
   }
 }
