@@ -88,8 +88,19 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
 
   // llamar a la nube
   llamarNubeKinto() {
-    console.log("la nube va de camino", this);
-    this.y = this.scene.player.y - 20;
-    this.x = this.scene.player.x + 50;
+    console.log("La nube va de camino", this);
+
+    // Calcular la posición objetivo
+    const targetX = this.scene.player.x + 50;
+    const targetY = this.scene.player.y - 20;
+
+    // Animar el movimiento de la nube hacia la posición del jugador
+    this.scene.tweens.add({
+      targets: this,
+      x: targetX,
+      y: targetY,
+      duration: 1000, // Duración de la animación en milisegundos
+      ease: "Sine.easeInOut", // Tipo de interpolación para un movimiento suave
+    });
   }
 }

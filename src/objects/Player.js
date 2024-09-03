@@ -158,7 +158,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       // Crear una nueva bola de fuego en la posición del jugador
       const bolaDeFuego = this.bolasDeFuego.get(
         this.x,
-        this.y - 50,
+        this.y - 60,
         "bolaDeFuego"
       );
       if (bolaDeFuego) {
