@@ -34,26 +34,7 @@ export class GameScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
 
     this.setupControls();
-
-    // Detectar la colisión entre el jugador y la nube
-    this.physics.add.collider(
-      this.player,
-      this.nubeKinto,
-      this.nubeKinto.onPlayerOnNube,
-      null,
-      this
-    );
-
-    this.physics.world.setBounds(0, 0, game.config.width, game.config.height); // Establece los límites del mundo
-
-    // colision entre las bolas de fuego y el cell
-    this.physics.add.collider(
-      this.player.bolasDeFuego,
-      this.cell,
-      this.player.bolaDeFuegoImpactaEnCell,
-      null,
-      this
-    );
+    this.setupCollisions();
   }
 
   update(time, delta) {
@@ -88,5 +69,25 @@ export class GameScene extends Phaser.Scene {
 
     // Configurar la tecla V (Ataque baston giro)
     this.keyV = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
+  }
+
+  setupCollisions() {
+    // Detectar la colisión entre el jugador y la nube
+    this.physics.add.collider(
+      this.player,
+      this.nubeKinto,
+      this.nubeKinto.onPlayerOnNube,
+      null,
+      this
+    );
+
+    // colision entre las bolas de fuego y el cell
+    this.physics.add.collider(
+      this.player.bolasDeFuego,
+      this.cell,
+      this.player.bolaDeFuegoImpactaEnCell,
+      null,
+      this
+    );
   }
 }
