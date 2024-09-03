@@ -75,7 +75,7 @@ export function createAnimations(scene) {
       { key: "caer1" },
     ],
     frameRate: 6,
-    repeat: 1,
+    repeat: 0,
   });
 
   // ATAQUES PLAYER

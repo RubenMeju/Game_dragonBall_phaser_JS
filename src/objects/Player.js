@@ -18,7 +18,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setupCollisions();
 
     // Configura la barra de vida
-    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 100); // Ajusta la posición y tamaño según tu preferencia
+    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 20); // Ajusta la posición y tamaño según tu preferencia
   }
 
   setupPlayer(scene) {
@@ -65,10 +65,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     const isOnGround = this.body.blocked.down;
     const isFalling = !isOnGround && this.body.velocity.y > 0;
 
-    this.handleMovement(cursors, spaceBar, isOnGround, isFalling);
-    this.handleFireball(keyB);
-    this.handleCloudMovement(cursors, spaceBar);
-    this.handleCloudCall(keyN);
+    if (this.alive) {
+      this.handleMovement(cursors, spaceBar, isOnGround, isFalling);
+      this.handleFireball(keyB);
+      this.handleCloudMovement(cursors, spaceBar);
+      this.handleCloudCall(keyN);
+    }
   }
 
   handleMovement(cursors, spaceBar, isOnGround, isFalling) {
@@ -225,7 +227,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   die() {
     this.alive = false;
-    this.setVisible(false);
-    // Aquí puedes agregar más lógica para la muerte del jugador
+    //this.setVisible(false);
+    this.setVelocity(0, 0);
+    this.setSize(30, 1);
+    this.setOffset(10, 15);
+    this.anims.play("morir", true);
   }
 }
