@@ -120,5 +120,8 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
 
     // Reproducir la animación de caída del jugador
     this.scene.player.anims.play("caer", true);
+
+    // quitar vida al jugador
+    this.scene.player.takeDamage(10);
   }
 }

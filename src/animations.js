@@ -54,13 +54,28 @@ export function createAnimations(scene) {
   scene.anims.create({
     key: "caer",
     frames: [
-      { key: "caer1" },
-      { key: "caer2" },
-      { key: "caer3" },
-      { key: "caer4" },
+      { key: "caer6" },
+      { key: "caer7" },
+      { key: "caer8" },
+      { key: "caer9" },
     ],
     frameRate: 6,
     repeat: -1,
+  });
+
+  // Crear la animación "caer"
+  scene.anims.create({
+    key: "morir",
+    frames: [
+      { key: "caer6" },
+      { key: "caer5" },
+      { key: "caer4" },
+      { key: "caer3" },
+      { key: "caer2" },
+      { key: "caer1" },
+    ],
+    frameRate: 6,
+    repeat: 1,
   });
 
   // ATAQUES PLAYER

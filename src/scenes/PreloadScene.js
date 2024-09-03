@@ -49,12 +49,18 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("jumpDown2", "./assets/jumpDown/image_caer1.png");
 
     // Animación caer
-    this.load.image("caer1", "./assets/animsPlayer/caer/image_6.png");
-    this.load.image("caer2", "./assets/animsPlayer/caer/image_7.png");
-    this.load.image("caer3", "./assets/animsPlayer/caer/image_8.png");
-    this.load.image("caer4", "./assets/animsPlayer/caer/image_9.png");
-    this.load.image("caer5", "./assets/animsPlayer/caer/image_10.png");
-    this.load.image("caer6", "./assets/animsPlayer/caer/image_11.png");
+
+    this.load.image("caer1", "./assets/animsPlayer/caer/image_1.png");
+    this.load.image("caer2", "./assets/animsPlayer/caer/image_2.png");
+    this.load.image("caer3", "./assets/animsPlayer/caer/image_3.png");
+    this.load.image("caer4", "./assets/animsPlayer/caer/image_4.png");
+    this.load.image("caer5", "./assets/animsPlayer/caer/image_5.png");
+    this.load.image("caer6", "./assets/animsPlayer/caer/image_6.png");
+    this.load.image("caer7", "./assets/animsPlayer/caer/image_7.png");
+    this.load.image("caer8", "./assets/animsPlayer/caer/image_8.png");
+    this.load.image("caer9", "./assets/animsPlayer/caer/image_9.png");
+    this.load.image("caer10", "./assets/animsPlayer/caer/image_10.png");
+    this.load.image("caer11", "./assets/animsPlayer/caer/image_11.png");
 
     // ATAQUES PLAYER
     // Animación onda lateral

@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { BolaDeFuego } from "./BolaDeFuego";
+import { HealthBar } from "./HealthBar";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
@@ -15,6 +16,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setupAnimations();
     this.setupFireballGroup();
     this.setupCollisions();
+
+    // Configura la barra de vida
+    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 100); // Ajusta la posición y tamaño según tu preferencia
   }
 
   setupPlayer(scene) {
@@ -208,5 +212,20 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   bolaDeFuegoImpactaEnUnMuro(bolaDeFuego, tile) {
     console.log("Impacto de una bola de fuego con un bloque", bolaDeFuego);
     bolaDeFuego.destroy();
+  }
+
+  takeDamage(amount) {
+    if (this.alive) {
+      this.healthBar.setHealth(this.healthBar.currentHealth - amount);
+      if (this.healthBar.currentHealth <= 0) {
+        this.die();
+      }
+    }
+  }
+
+  die() {
+    this.alive = false;
+    this.setVisible(false);
+    // Aquí puedes agregar más lógica para la muerte del jugador
   }
 }
