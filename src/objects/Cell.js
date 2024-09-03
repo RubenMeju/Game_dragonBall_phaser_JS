@@ -93,7 +93,10 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleColisionCellWithPlayer() {
-    console.log("El cell está colisionando con el jugador", this.x);
+    if (this.scene.nubeKinto.isPlayerOnTop) {
+      this.scene.player.body.allowGravity = true;
+      this.scene.nubeKinto.isPlayerOnTop = false;
+    }
 
     // Verificar si el jugador está a la derecha o a la izquierda del cell
     const playerIsToTheRight = this.scene.player.x > this.x;

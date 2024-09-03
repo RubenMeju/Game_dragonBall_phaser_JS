@@ -227,7 +227,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   die() {
     this.alive = false;
-    //this.setVisible(false);
     this.setVelocity(0, 0);
     this.setSize(30, 1);
     this.setOffset(10, 15);

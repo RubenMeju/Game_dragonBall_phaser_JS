@@ -113,8 +113,6 @@ export class NubeKinto extends Phaser.Physics.Arcade.Sprite {
   }
 
   llamarNubeKinto() {
-    console.log("La nube va de camino", this);
-
     const targetX = this.scene.player.x + 50;
     const targetY = this.scene.player.y - 20;
 
