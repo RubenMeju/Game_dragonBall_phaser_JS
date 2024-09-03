@@ -49,7 +49,6 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("jumpDown2", "./assets/jumpDown/image_caer1.png");
 
     // Animación caer
-
     this.load.image("caer1", "./assets/animsPlayer/caer/image_1.png");
     this.load.image("caer2", "./assets/animsPlayer/caer/image_2.png");
     this.load.image("caer3", "./assets/animsPlayer/caer/image_3.png");
@@ -63,6 +62,41 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("caer11", "./assets/animsPlayer/caer/image_11.png");
 
     // ATAQUES PLAYER
+
+    // Animación golpe baston giro
+    this.load.image(
+      "golpeBastonGiro1",
+      "./assets/animsPlayer/golpeBastonGiro/image_1.png"
+    );
+    this.load.image(
+      "golpeBastonGiro2",
+      "./assets/animsPlayer/golpeBastonGiro/image_2.png"
+    );
+    this.load.image(
+      "golpeBastonGiro3",
+      "./assets/animsPlayer/golpeBastonGiro/image_3.png"
+    );
+    this.load.image(
+      "golpeBastonGiro4",
+      "./assets/animsPlayer/golpeBastonGiro/image_4.png"
+    );
+    this.load.image(
+      "golpeBastonGiro5",
+      "./assets/animsPlayer/golpeBastonGiro/image_5.png"
+    );
+    this.load.image(
+      "golpeBastonGiro6",
+      "./assets/animsPlayer/golpeBastonGiro/image_6.png"
+    );
+    this.load.image(
+      "golpeBastonGiro7",
+      "./assets/animsPlayer/golpeBastonGiro/image_7.png"
+    );
+    this.load.image(
+      "golpeBastonGiro8",
+      "./assets/animsPlayer/golpeBastonGiro/image_8.png"
+    );
+
     // Animación onda lateral
     this.load.image("ondaLateral1", "./assets/ondaLateral/image_1.png");
     this.load.image("ondaLateral2", "./assets/ondaLateral/image_2.png");

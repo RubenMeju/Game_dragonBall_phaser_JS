@@ -47,7 +47,13 @@ export class GameScene extends Phaser.Scene {
 
   update(time, delta) {
     if (this.player.alive) {
-      this.player.update(this.cursors, this.spaceBar, this.keyN, this.keyB);
+      this.player.update(
+        this.cursors,
+        this.spaceBar,
+        this.keyN,
+        this.keyB,
+        this.keyV
+      );
     }
     this.nubeKinto.update(this.cursors, this.spaceBar);
 
@@ -68,5 +74,8 @@ export class GameScene extends Phaser.Scene {
 
     // Configurar la tecla B (lanzar onda Lateral)
     this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+
+    // Configurar la tecla V (Ataque baston giro)
+    this.keyV = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
   }
 }

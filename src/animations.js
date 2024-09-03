@@ -79,6 +79,24 @@ export function createAnimations(scene) {
   });
 
   // ATAQUES PLAYER
+
+  // Ataque baston giro
+  scene.anims.create({
+    key: "golpeBastonGiro",
+    frames: [
+      { key: "golpeBastonGiro1" },
+      { key: "golpeBastonGiro2" },
+      { key: "golpeBastonGiro3" },
+      { key: "golpeBastonGiro4" },
+      { key: "golpeBastonGiro5" },
+      { key: "golpeBastonGiro6" },
+      { key: "golpeBastonGiro7" },
+      { key: "golpeBastonGiro8" },
+    ],
+    frameRate: 6,
+    repeat: 0,
+  });
+
   // Crear la animación "ondaLateral"
   scene.anims.create({
     key: "ondaLateral",

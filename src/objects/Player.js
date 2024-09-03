@@ -59,7 +59,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     });
   }
 
-  update(cursors, spaceBar, keyN, keyB) {
+  update(cursors, spaceBar, keyN, keyB, keyV) {
     if (this.animAttack) return; // No permitir acciones durante el ataque
 
     const isOnGround = this.body.blocked.down;
@@ -67,6 +67,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     if (this.alive) {
       this.handleMovement(cursors, spaceBar, isOnGround, isFalling);
+      this.handleBastonGiro(keyV);
       this.handleFireball(keyB);
       this.handleCloudMovement(cursors, spaceBar);
       this.handleCloudCall(keyN);
@@ -109,6 +110,22 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("jumpDown", true);
     } else if (isOnGround) {
       this.anims.play("idle", true);
+    }
+  }
+
+  handleBastonGiro(keyV) {
+    if (keyV.isDown) {
+      if (!this.animAttack) {
+        console.log("la tecla V fue pulsada");
+        this.animAttack = true;
+        this.anims.play("golpeBastonGiro", true);
+
+        this.once("animationcomplete-golpeBastonGiro", () => {
+          console.log("la animacion ha terminado");
+
+          this.animAttack = false;
+        });
+      }
     }
   }
 
