@@ -28,7 +28,7 @@ export class GameScene extends Phaser.Scene {
     // Creal la nube
     this.nubeKinto = new NubeKinto(this, 350, 550, "NubeWalk");
 
-    this.cell = new Cell(this, 700, 850, "enemyIdle");
+    this.cell = new Cell(this, 1700, 850, "enemyIdle");
 
     // Obtener el tamaño del mundo o del mapa
     const mapWidth = this.mapController.map.widthInPixels;

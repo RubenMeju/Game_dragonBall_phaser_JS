@@ -24,25 +24,35 @@ export class PreloadScene extends Phaser.Scene {
       frameHeight: 46,
     });
 
-    //jump
+    // jump
     this.load.spritesheet("tiles-goku-jump", "assets/animsPlayer/jump.png", {
       frameWidth: 38,
       frameHeight: 38,
     });
 
-    //morir
+    // morir
     this.load.spritesheet("tiles-goku-morir", "assets/animsPlayer/morir.png", {
       frameWidth: 40,
       frameHeight: 40,
     });
 
-    //sprites nube kinto
+    // ondaLateral
+    this.load.spritesheet(
+      "tiles-goku-ondaLateral",
+      "assets/animsPlayer/ondaLateral.png",
+      {
+        frameWidth: 32,
+        frameHeight: 40,
+      }
+    );
+
+    // sprites nube kinto
     this.load.spritesheet("tiles-nube", "assets/kinto.png", {
       frameWidth: 48,
       frameHeight: 32,
     });
 
-    //sprites items
+    // sprites items
     this.load.spritesheet("tiles-items", "assets/items.png", {
       frameWidth: 23,
       frameHeight: 24,
@@ -87,13 +97,13 @@ export class PreloadScene extends Phaser.Scene {
       "golpeBastonGiro8",
       "./assets/animsPlayer/golpeBastonGiro/image_8.png"
     );
-
+    /*
     // Animación onda lateral
     this.load.image("ondaLateral1", "./assets/ondaLateral/image_1.png");
     this.load.image("ondaLateral2", "./assets/ondaLateral/image_2.png");
     this.load.image("ondaLateral3", "./assets/ondaLateral/image_3.png");
     this.load.image("ondaLateral4", "./assets/ondaLateral/image_4.png");
-
+*/
     // Animación bola de fuego
     this.load.image("bolaDeFuego1", "./assets/bolaDeFuego/image_1.png");
     this.load.image("bolaDeFuego2", "./assets/bolaDeFuego/image_2.png");

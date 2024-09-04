@@ -17,7 +17,7 @@ export function createAnimations(scene) {
       start: 0,
       end: 7,
     }),
-    frameRate: 5,
+    frameRate: 10,
     repeat: -1,
   });
 
@@ -63,6 +63,17 @@ export function createAnimations(scene) {
   });
 
   // ATAQUES PLAYER
+  // Crear la animación "ondaLateral"
+  scene.anims.create({
+    key: "ondaLateral",
+    frames: scene.anims.generateFrameNumbers("tiles-goku-ondaLateral", {
+      start: 1,
+      end: 0,
+    }),
+    frameRate: 4,
+    repeat: 0,
+  });
+
   // Ataque baston giro
   scene.anims.create({
     key: "golpeBastonGiro",
@@ -79,7 +90,7 @@ export function createAnimations(scene) {
     frameRate: 6,
     repeat: 0,
   });
-
+  /*
   // Crear la animación "ondaLateral"
   scene.anims.create({
     key: "ondaLateral",
@@ -93,7 +104,7 @@ export function createAnimations(scene) {
     frameRate: 6,
     repeat: 0,
   });
-
+*/
   // Crear la animación "bolaDeFuego"
   scene.anims.create({
     key: "bolaDeFuego",
