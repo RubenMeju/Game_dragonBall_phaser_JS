@@ -17,9 +17,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setupAnimations();
     this.setupFireballGroup();
     this.setupCollisions();
-
-    // Configura la barra de vida
-    this.healthBar = new HealthBar(scene, x - 10, y - 40, 100, 10, 20); // Ajusta la posición y tamaño según tu preferencia
   }
 
   setupPlayer(scene) {
@@ -257,8 +254,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   takeDamage(amount) {
     if (this.alive) {
-      this.healthBar.setHealth(this.healthBar.currentHealth - amount);
-      if (this.healthBar.currentHealth <= 0) {
+      this.scene.uiController.playerHealthBar.setHealth(
+        this.scene.uiController.playerHealthBar.currentHealth - amount
+      );
+      if (this.scene.uiController.playerHealthBar.currentHealth <= 0) {
         this.die();
       }
     }
