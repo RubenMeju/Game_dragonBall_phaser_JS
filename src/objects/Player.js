@@ -6,7 +6,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
     this.scene = scene;
-    this.velocidad = 200;
+    this.velocidad = 300;
     this.alive = true;
     this.animAttack = false;
     this.bolasDeFuego = null;
@@ -157,11 +157,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.cambiarAnimacion("ondaLateral");
 
     this.once("animationcomplete-ondaLateral", () => {
-      const bolaDeFuego = this.bolasDeFuego.get(
-        this.x,
-        this.y - 60,
-        "bolaDeFuego"
-      );
+      const bolaDeFuego = this.bolasDeFuego.get(this.x, this.y, "bolaDeFuego");
 
       if (bolaDeFuego) {
         const mirandoALaIzquierda = this.flipX;
@@ -190,7 +186,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   handleCloudMovement(cursors, spaceBar) {
     if (this.scene.nubeKinto.isPlayerOnTop) {
       this.x = this.scene.nubeKinto.x + 75;
-      this.y = this.scene.nubeKinto.y - this.scene.nubeKinto.height - 20;
+      this.y = this.scene.nubeKinto.y - this.scene.nubeKinto.height - 90;
       this.flipX = this.scene.nubeKinto.flipX;
 
       let velocityY = 0;

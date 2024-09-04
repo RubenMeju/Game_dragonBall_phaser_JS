@@ -22,7 +22,7 @@ export class MapController {
   createBackground() {
     // Crear el fondo que se repite en horizontal
     this.background = this.scene.add
-      .tileSprite(0, 0, 32000, 3200, "bgImage")
+      .tileSprite(0, 0, this.map.widthInPixels, 3200, "bgImage")
       .setOrigin(0, 0);
 
     // Si deseas que el fondo se desplace:
