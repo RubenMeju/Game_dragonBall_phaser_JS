@@ -43,33 +43,26 @@ export function createAnimations(scene) {
   // Crear la animación "caer"
   scene.anims.create({
     key: "caer",
-    frames: [
-      { key: "caer6" },
-      { key: "caer7" },
-      { key: "caer8" },
-      { key: "caer9" },
-    ],
-    frameRate: 6,
+    frames: scene.anims.generateFrameNumbers("tiles-goku-morir", {
+      start: 6,
+      end: 7,
+    }),
+    frameRate: 5,
     repeat: -1,
   });
 
-  // Crear la animación "caer"
+  // Animación morir
   scene.anims.create({
     key: "morir",
-    frames: [
-      { key: "caer6" },
-      { key: "caer5" },
-      { key: "caer4" },
-      { key: "caer3" },
-      { key: "caer2" },
-      { key: "caer1" },
-    ],
-    frameRate: 6,
+    frames: scene.anims.generateFrameNumbers("tiles-goku-morir", {
+      start: 0,
+      end: 3,
+    }),
+    frameRate: 5,
     repeat: 0,
   });
 
   // ATAQUES PLAYER
-
   // Ataque baston giro
   scene.anims.create({
     key: "golpeBastonGiro",
