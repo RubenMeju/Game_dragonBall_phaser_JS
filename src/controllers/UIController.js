@@ -21,6 +21,10 @@ export class UIController {
 
     // Crear las barras de salud
     this.createHealthBars();
+
+    this.bolasDeDragon = 0;
+
+    this.createText();
   }
 
   createHealthBars() {
@@ -31,6 +35,17 @@ export class UIController {
     // Crear la barra de salud para el enemigo
     this.enemyHealthBar = new HealthBar(this.scene, 10, 40, 200, 20, 100);
     this.uiContainer.add(this.enemyHealthBar.container);
+  }
+
+  createText() {
+    this.texto = this.scene.add
+      .text(120, 80, `Bolas de dragón: ${this.bolasDeDragon}`, {
+        font: "28px Arial", // Cambia la fuente y tamaño si lo deseas
+        fill: "#ffffff", // Color del texto
+      })
+      .setOrigin(0.5); // Centrar el texto
+
+    this.uiContainer.add(this.texto);
   }
 
   update() {

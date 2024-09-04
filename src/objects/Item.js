@@ -43,7 +43,7 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
       this.scene.physics.add.collider(this, blocks.solidos);
     }
 
-    // Detectar la colisión entre el jugador y eñ item
+    // Detectar la colisión entre el jugador y el item
     this.scene.physics.add.collider(
       this.scene.player,
       this,
@@ -54,6 +54,14 @@ export class Item extends Phaser.Physics.Arcade.Sprite {
   }
 
   getItem(player, item) {
+    console.log("he cogido una bola", this.scene.uiController.bolasDeDragon);
+
+    this.scene.uiController.bolasDeDragon += 1;
+    // Actualiza el texto mostrado
+    this.scene.uiController.texto.setText(
+      `Bolas de dragón: ${this.scene.uiController.bolasDeDragon}`
+    );
+
     item.destroy();
   }
 }

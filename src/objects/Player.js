@@ -102,7 +102,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       }
 
       if (spaceBar.isDown && isOnGround) {
-        this.setVelocityY(-500);
+        this.setVelocityY(-600);
         this.anims.play("jump", true);
       }
 
