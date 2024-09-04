@@ -12,7 +12,20 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("bgImage", "assets/bg.png");
 
     //sprites goku
-    this.load.spritesheet("tiles-goku", "assets/animsPlayer/jump.png", {
+    // IDle
+    this.load.spritesheet("tiles-goku-idle", "assets/animsPlayer/idle.png", {
+      frameWidth: 36,
+      frameHeight: 40,
+    });
+
+    // Walk
+    this.load.spritesheet("tiles-goku-walk", "assets/animsPlayer/walk.png", {
+      frameWidth: 36,
+      frameHeight: 46,
+    });
+
+    //jump
+    this.load.spritesheet("tiles-goku-jump", "assets/animsPlayer/jump.png", {
       frameWidth: 38,
       frameHeight: 38,
     });
@@ -22,32 +35,12 @@ export class PreloadScene extends Phaser.Scene {
       frameWidth: 48,
       frameHeight: 32,
     });
-    //  this.load.image("tileSets-nubeKinto", "assets/kinto.png");
 
     //sprites items
     this.load.spritesheet("tiles-items", "assets/items.png", {
       frameWidth: 23,
       frameHeight: 24,
     });
-
-    // ANIMACIONES PLAYER
-    // Animación idle
-    this.load.image("idle1", "./assets/idle/image_1.png");
-    this.load.image("idle2", "./assets/idle/image_2.png");
-    this.load.image("idle3", "./assets/idle/image_3.png");
-    this.load.image("idle4", "./assets/idle/image_4.png");
-    this.load.image("idle5", "./assets/idle/image_5.png");
-    this.load.image("idle6", "./assets/idle/image_6.png");
-
-    // Animación walk
-    this.load.image("walk1", "./assets/walk/image_1.png");
-    this.load.image("walk2", "./assets/walk/image_2.png");
-    this.load.image("walk3", "./assets/walk/image_3.png");
-    this.load.image("walk4", "./assets/walk/image_4.png");
-    this.load.image("walk5", "./assets/walk/image_5.png");
-    this.load.image("walk6", "./assets/walk/image_6.png");
-    this.load.image("walk7", "./assets/walk/image_7.png");
-    this.load.image("walk8", "./assets/walk/image_8.png");
 
     // Animación jumpDown
     this.load.image("jumpDown1", "./assets/jumpDown/image_caer.png");

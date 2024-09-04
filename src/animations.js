@@ -2,56 +2,36 @@ export function createAnimations(scene) {
   // Crear la animación "idle"
   scene.anims.create({
     key: "idle",
-    frames: [
-      { key: "idle2" },
-      { key: "idle3" },
-      { key: "idle4" },
-      { key: "idle5" },
-      { key: "idle6" },
-    ],
-    frameRate: 4,
+    frames: scene.anims.generateFrameNumbers("tiles-goku-idle", {
+      start: 0,
+      end: 5,
+    }),
+    frameRate: 5,
     repeat: -1,
   });
 
   // Crear la animación "walk"
   scene.anims.create({
     key: "walk",
-    frames: [
-      { key: "walk2" },
-      { key: "walk3" },
-      { key: "walk4" },
-      { key: "walk5" },
-      { key: "walk6" },
-      { key: "walk7" },
-      { key: "walk8" },
-    ],
-    frameRate: 10,
+    frames: scene.anims.generateFrameNumbers("tiles-goku-walk", {
+      start: 0,
+      end: 7,
+    }),
+    frameRate: 5,
     repeat: -1,
   });
 
+  // Animación jump
   scene.anims.create({
     key: "jump",
-    frames: scene.anims.generateFrameNumbers("tiles-goku", {
+    frames: scene.anims.generateFrameNumbers("tiles-goku-jump", {
       start: 0,
       end: 4,
     }),
     frameRate: 5,
     repeat: -1,
   });
-  /*
-  // Crear la animación "jump"
-  scene.anims.create({
-    key: "jump",
-    frames: [
-      { key: "jump2" },
-      { key: "jump3" },
-      { key: "jump4" },
-      { key: "jump5" },
-    ],
-    frameRate: 10,
-    repeat: -1,
-  });
-*/
+
   // Crear la animación "jumpDown"
   scene.anims.create({
     key: "jumpDown",
