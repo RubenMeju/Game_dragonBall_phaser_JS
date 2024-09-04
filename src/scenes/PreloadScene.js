@@ -21,7 +21,7 @@ export class PreloadScene extends Phaser.Scene {
     // Walk
     this.load.spritesheet("tiles-goku-walk", "assets/animsPlayer/walk.png", {
       frameWidth: 36,
-      frameHeight: 46,
+      frameHeight: 42,
     });
 
     // jump

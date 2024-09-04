@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import { BolaDeFuego } from "./BolaDeFuego";
-import { HealthBar } from "./HealthBar";
 import { game } from "../game";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
@@ -26,9 +25,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Configuración del sprite
     this.setScale(scene.escalado);
-    this.setOrigin(0.5, 1);
-    this.body.setSize(28, 36);
-    this.body.setOffset(2, 0);
+    //this.setOrigin(0.5, 0.5);
+    this.body.setSize(32, 40);
+    // this.body.setOffset(2, 0);
   }
 
   setupPhysics(scene) {
