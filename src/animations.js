@@ -182,6 +182,16 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  scene.anims.create({
+    key: "enemyDamage",
+    frames: scene.anims.generateFrameNumbers("tiles-cell-damage", {
+      start: 0,
+      end: 1,
+    }),
+    frameRate: 2,
+    repeat: 0,
+  });
+
   // Crear la animación "die"
   scene.anims.create({
     key: "enemyDie",

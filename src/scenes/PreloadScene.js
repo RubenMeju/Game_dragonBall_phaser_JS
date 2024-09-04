@@ -97,13 +97,7 @@ export class PreloadScene extends Phaser.Scene {
       "golpeBastonGiro8",
       "./assets/animsPlayer/golpeBastonGiro/image_8.png"
     );
-    /*
-    // Animación onda lateral
-    this.load.image("ondaLateral1", "./assets/ondaLateral/image_1.png");
-    this.load.image("ondaLateral2", "./assets/ondaLateral/image_2.png");
-    this.load.image("ondaLateral3", "./assets/ondaLateral/image_3.png");
-    this.load.image("ondaLateral4", "./assets/ondaLateral/image_4.png");
-*/
+
     // Animación bola de fuego
     this.load.image("bolaDeFuego1", "./assets/bolaDeFuego/image_1.png");
     this.load.image("bolaDeFuego2", "./assets/bolaDeFuego/image_2.png");
@@ -134,6 +128,12 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("enemyDie2", "./assets/animsEnemy/die/image_2.png");
     this.load.image("enemyDie3", "./assets/animsEnemy/die/image_3.png");
     this.load.image("enemyDie4", "./assets/animsEnemy/die/image_4.png");
+
+    // Animación daño en el enemigo
+    this.load.spritesheet("tiles-cell-damage", "assets/animsEnemy/prueba.png", {
+      frameWidth: 112,
+      frameHeight: 110,
+    });
   }
 
   create() {

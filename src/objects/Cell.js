@@ -33,6 +33,8 @@ export class Cell extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
+    if (this.animAttack) return;
+
     if (this.alive) {
       // Determina la dirección del movimiento hacia el jugador
       const player = this.scene.player;
