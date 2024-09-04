@@ -1,7 +1,6 @@
 import { createAnimations } from "../animations.js";
 import { MapController } from "../controllers/MapController.js";
-import { game } from "../game.js";
-import { Cell } from "../objects/Cell.js";
+import { UIController } from "../controllers/UIController.js";
 import { Item } from "../objects/Item.js";
 import { NubeKinto } from "../objects/NubeKinto.js";
 import { Player } from "../objects/Player.js";
@@ -18,6 +17,9 @@ export class GameScene extends Phaser.Scene {
     createAnimations(this);
 
     this.mapController = new MapController(this);
+
+    // Inicializar UI Manager
+    this.uiController = new UIController(this);
 
     // Crear el jugador en una posición inicial
     this.player = new Player(this, 100, 100, "idle1");
@@ -54,6 +56,9 @@ export class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    // Actualizar la UI
+    this.uiController.update();
+
     if (this.player.alive) {
       this.player.update(
         this.cursors,

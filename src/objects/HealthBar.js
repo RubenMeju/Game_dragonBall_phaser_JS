@@ -10,32 +10,37 @@ export class HealthBar {
     this.maxHealth = maxHealth;
     this.currentHealth = maxHealth;
 
+    // Crear un contenedor para la barra de salud
+    this.container = scene.add.container(x, y);
+
     // Crear el fondo de la barra de vida
-    this.background = this.scene.add.rectangle(x, y, width, height, 0x000000);
+    this.background = this.scene.add.rectangle(0, 0, width, height, 0x000000);
     this.background.setOrigin(0, 0.5);
+    this.container.add(this.background);
 
-    // Crear el contenedor de la barra de vida
-    this.bar = this.scene.add.rectangle(x, y, width, height, 0x00ff00);
+    // Crear la barra de vida
+    this.bar = this.scene.add.rectangle(0, 0, width, height, 0x00ff00);
     this.bar.setOrigin(0, 0.5);
+    this.container.add(this.bar);
 
-    // Crear la barra de vida en sí
+    // Actualizar la barra de vida
     this.updateBar();
   }
 
   updateBar() {
-    // Calcular la proporción de vida restante
     const healthPercent = this.currentHealth / this.maxHealth;
-
-    // Ajustar el ancho de la barra de vida
     this.bar.setSize(this.width * healthPercent, this.height);
-
-    // Actualizar el color de la barra de vida en función de la salud
-    const color = healthPercent > 0.5 ? 0x00ff00 : 0xff0000; // Verde para más de 50%, rojo para menos
+    const color = healthPercent > 0.5 ? 0x00ff00 : 0xff0000;
     this.bar.setFillStyle(color);
   }
 
   setHealth(health) {
     this.currentHealth = Phaser.Math.Clamp(health, 0, this.maxHealth);
     this.updateBar();
+  }
+
+  // Método para actualizar la posición de la barra
+  setPosition(x, y) {
+    this.container.setPosition(x, y);
   }
 }
