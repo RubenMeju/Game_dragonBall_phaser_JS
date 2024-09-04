@@ -11,12 +11,18 @@ export class PreloadScene extends Phaser.Scene {
     // background
     this.load.image("bgImage", "assets/bg.png");
 
+    //sprites goku
+    this.load.spritesheet("tiles-goku", "assets/animsPlayer/jump.png", {
+      frameWidth: 38,
+      frameHeight: 38,
+    });
+
     //sprites nube kinto
     this.load.spritesheet("tiles-nube", "assets/kinto.png", {
       frameWidth: 48,
       frameHeight: 32,
     });
-    this.load.image("tileSets-nubeKinto", "assets/kinto.png");
+    //  this.load.image("tileSets-nubeKinto", "assets/kinto.png");
 
     //sprites items
     this.load.spritesheet("tiles-items", "assets/items.png", {
@@ -42,13 +48,6 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image("walk6", "./assets/walk/image_6.png");
     this.load.image("walk7", "./assets/walk/image_7.png");
     this.load.image("walk8", "./assets/walk/image_8.png");
-
-    // Animación jump
-    this.load.image("jump1", "./assets/jump/image_1.png");
-    this.load.image("jump2", "./assets/jump/image_2.png");
-    this.load.image("jump3", "./assets/jump/image_3.png");
-    this.load.image("jump4", "./assets/jump/image_4.png");
-    this.load.image("jump5", "./assets/jump/image_5.png");
 
     // Animación jumpDown
     this.load.image("jumpDown1", "./assets/jumpDown/image_caer.png");

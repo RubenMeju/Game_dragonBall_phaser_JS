@@ -14,7 +14,7 @@ export class UIController {
       300, // Ancho del fondo UI
       100, // Altura del fondo UI
       0x000000, // Color del fondo
-      0.5 // Opacidad del fondo
+      0.1 // Opacidad del fondo
     );
     this.uiBackground.setOrigin(0, 0); // Ajustar el origen del rectángulo
     this.uiContainer.add(this.uiBackground);

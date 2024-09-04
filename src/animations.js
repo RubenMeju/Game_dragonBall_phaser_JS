@@ -29,6 +29,16 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
+  scene.anims.create({
+    key: "jump",
+    frames: scene.anims.generateFrameNumbers("tiles-goku", {
+      start: 0,
+      end: 4,
+    }),
+    frameRate: 5,
+    repeat: -1,
+  });
+  /*
   // Crear la animación "jump"
   scene.anims.create({
     key: "jump",
@@ -41,7 +51,7 @@ export function createAnimations(scene) {
     frameRate: 10,
     repeat: -1,
   });
-
+*/
   // Crear la animación "jumpDown"
   scene.anims.create({
     key: "jumpDown",
